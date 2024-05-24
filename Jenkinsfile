@@ -11,13 +11,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
+                 script {
                     // Checkout the code from the GitHub repository
                     checkout([
                         $class: 'GitSCM',
                         branches: [[name: '*/main']],
                         userRemoteConfigs: [[
-                            url: 'https://github.com/HanaHardy/SCassignment.git',
+                            url: 'https://github.com/HanaHardy/SCassignment1.git',
                             credentialsId: "${GITHUB_CREDENTIALS_ID}"
                         ]]
                     ])
