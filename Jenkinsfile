@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub'
-        GITHUB_CREDENTIALS_ID = 'github-token'
+        GITHUB_CREDENTIALS_ID = 'github-tokenn'
         IMAGE_NAME = 'hanahardy/scassignment'
         IMAGE_TAG = 'latest'
     }
