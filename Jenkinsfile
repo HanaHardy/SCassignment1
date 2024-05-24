@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("yourusername/your-repo:latest")
+                    dockerImage = docker.build("hanahardy/SCassignment:latest")
                 }
             }
         }
