@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub'
-        GITHUB_CREDENTIALS_ID = 'github-tokenn'
+        GITHUB_CREDENTIALS_ID = 'github-token'
         IMAGE_NAME = 'hanahardy/scassignment'
         IMAGE_TAG = 'latest'
     }
@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 script {
+                script {
                     // Checkout the code from the GitHub repository
                     checkout([
                         $class: 'GitSCM',
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     // Add your test steps here
-                    sh 'echo "Running tests..."'
+                    bat 'echo Running tests...'
                 }
             }
         }
