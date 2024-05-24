@@ -3,20 +3,32 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub'
+        GITHUB_CREDENTIALS_ID = 'github-tokenn'
+        IMAGE_NAME = 'hanahardy/scassignment'
+        IMAGE_TAG = 'latest'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the code from the GitHub repository
-                git url: 'https://github.com/hanahardy/SCassignment.git', branch: 'main'
+                script {
+                    // Checkout the code from the GitHub repository
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/HanaHardy/SCassignment1.git',
+                            credentialsId: "${GITHUB_CREDENTIALS_ID}"
+                        ]]
+                    ])
+                }
             }
         }
         stage('Build') {
             steps {
                 script {
-                    // Build the Docker image
-                    dockerImage = docker.build("hanahardy/scassignment:latest")
+                    // Build the Docker image with the specified tag
+                    dockerImage = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
                 }
             }
         }
@@ -25,8 +37,6 @@ pipeline {
                 script {
                     // Add your test steps here
                     sh 'echo "Running tests..."'
-                    // Example test command:
-                    // sh 'docker run --rm hanahardy/scassignment:latest some-test-command'
                 }
             }
         }
