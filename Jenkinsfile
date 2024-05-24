@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub'
-        GITHUB_CREDENTIALS_ID = 'github-tokenn'
+        GITHUB_CREDENTIALS_ID = 'github-token'
         IMAGE_NAME = 'hanahardy/scassignment'
         IMAGE_TAG = 'latest'
     }
@@ -17,7 +17,7 @@ pipeline {
                         $class: 'GitSCM',
                         branches: [[name: '*/main']],
                         userRemoteConfigs: [[
-                            url: 'https://github.com/HanaHardy/SCassignment1.git',
+                            url: 'https://github.com/hanahardy/SCassignment.git',
                             credentialsId: "${GITHUB_CREDENTIALS_ID}"
                         ]]
                     ])
